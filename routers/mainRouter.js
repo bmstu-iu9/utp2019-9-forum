@@ -46,8 +46,8 @@ class Router {
                 filePath = path.resolve(fileUrl);
                 sendMethod.sendResponse(filePath,res,'text/html',null,null);
             }
-            else if (req.url == "/info") {
-                fileUrl = './views/myinfo.html';
+            else if (tmp == "user") {
+                fileUrl = './views/info.html';
                 filePath = path.resolve(fileUrl);
                 sendMethod.sendResponse(filePath,res,'text/html',null,null);
             }

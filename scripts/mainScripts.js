@@ -14,7 +14,7 @@ else {
     var login = name.split('=')[1];
     if (login!=undefined) {
       document.getElementById('displayUsername').innerHTML = 'Welcome ' + login;
-      document.getElementById('switchNavTab').innerHTML= '<li><a href="/add-post">Create new post</a></li><li><a href="./info">My info</a></li><li><a href="/logout">Log out</a></li>';
+      document.getElementById('switchNavTab').innerHTML= '<li><a href="/add-post">Create new post</a></li><li><a href="/user/'+login+'">My info</a></li><li><a href="/logout">Log out</a></li>';
     } else {
       document.getElementById('displayUsername').innerHTML = "You are not login!";
       document.getElementById('switchNavTab').innerHTML= '<li><a href="./views/login.html">Login</a></li><li><a href="./views/signup.html">Sign Up</a></li>';
@@ -63,8 +63,12 @@ xmlHttp.onreadystatechange = function() {
 
             var author = document.createElement('th');
             author.setAttribute('width',"10%");
-            author.innerHTML = myDB.Threads[i].author;
+            var inner = document.createElement('a');
+            inner.setAttribute('href','/user/'+myDB.Threads[i].author);
+            inner.innerHTML = myDB.Threads[i].author;
+            author.appendChild(inner);
             thread.appendChild(author);
+
             thread.setAttribute('height','30');
             document.getElementById("displayThread").appendChild(thread);
         }

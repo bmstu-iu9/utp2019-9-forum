@@ -1,3 +1,4 @@
+var login;
 
 if (document.cookie == '/' || document.cookie == "") {
     document.getElementById('displayUsername').innerHTML = "You are not login!";
@@ -10,10 +11,10 @@ else {
       //console.log("username is = " + txt[1].indexOf("username"));
         if (txt[i].indexOf("username") !=-1) name = txt[i];
     }
-    var login = name.split('=')[1];
+    login = name.split('=')[1];
     if (login!=undefined) {
       document.getElementById('displayUsername').innerHTML = 'Welcome ' + login;
-      document.getElementById('switchNavTab').innerHTML= '<li><a href="/add-post">Create new post</a></li><li><a href="/info">My info</a></li><li><a href="/logout">Log out</a></li>';
+      document.getElementById('switchNavTab').innerHTML= '<li><a href="/add-post">Create new post</a></li><li><a href="/user/'+login+'">My info</a></li><li><a href="/logout">Log out</a></li>';
     } else {
       document.getElementById('displayUsername').innerHTML = "You are not login!";
       document.getElementById('switchNavTab').innerHTML= '<li><a href="./views/login.html">Login</a></li><li><a href="./views/signup.html">Sign Up</a></li>';
@@ -25,7 +26,7 @@ var xmlHttp = new XMLHttpRequest();
 xmlHttp.onreadystatechange = function() {
     if (this.readyState==4 && this.status==200) {
         var myDB = JSON.parse(this.responseText);
-
+        login = window.location.pathname.split('/')[2];
         var index;
         for (var i=0;i<Object.keys(myDB.Users).length;i++)
             if (myDB.Users[i].username == login) index = i;
