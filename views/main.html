@@ -8,8 +8,10 @@
     <title> ROZ Forum </title>
 
     <style>
-        table,th,td {
-            border: 1px solid white;
+
+        table {
+            border-collapse: collapse;
+            border: 1px solid black;
         }
     </style>
 
@@ -49,15 +51,7 @@
         </div>
     </nav>
 
-  <table width = "80%" style = "margin-left: 10%; margin-top: 2%">
-      <tr style = "background-color: #2D90EC; color: white">
-          <th width = "10%">Tag</th>
-          <th width = "60%">Thread title</th>
-          <th class="text-center" width = "10%">Upvote </th>
-          <th class="text-center" width = "10%">Comments </th>
-          <th witdh = "10%">Author </th>
-      </tr>
-      <table width = "80%" id = "displayThread" style = "margin-left: 10%;color : #1A5892"></table>
+  <table width = "80%" style = "margin-left: 10%; margin-top: 2%" id = "displayThread">
   </table>
 
   <script src = "../scripts/mainScripts.js"></script>

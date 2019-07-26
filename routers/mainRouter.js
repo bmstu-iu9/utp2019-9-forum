@@ -31,6 +31,16 @@ class Router {
                 var user = require('./user');
                 user.getAllUsers(req,res);
             }
+            else if (req.url == '/login') {
+              fileUrl = './views/login.html';
+              filePath = path.resolve(fileUrl);
+              sendMethod.sendResponse(filePath,res,'text/html',null,null);
+            }
+            else if (req.url == '/signup') {
+              fileUrl = './views/signup.html';
+              filePath = path.resolve(fileUrl);
+              sendMethod.sendResponse(filePath,res,'text/html',null,null);
+            }
             else if (tmp == 'thread') {
                 fileUrl = './views/thread.html';
                 filePath = path.resolve(fileUrl);
@@ -56,11 +66,11 @@ class Router {
       else if (req.method == 'POST') {
           var tmp = req.url.split('/')[1];
           console.log(tmp);
-          if (fileUrl == './views/signup.html') {
+          if (req.url == '/signup') {
               var reg = require('./signup');
               reg.Signup(req,res);
           }
-          else if (fileUrl == './views/login.html') {
+          else if (req.url == '/login') {
               var auth = require('./login');
               auth.Login(req,res);
           }

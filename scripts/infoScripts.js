@@ -2,8 +2,8 @@ var login;
 
 if (document.cookie == '/' || document.cookie == "") {
     document.getElementById('displayUsername').innerHTML = "You are not login!";
-    document.getElementById('switchNavTab').innerHTML= '<li><a href="./views/login.html">Login</a></li><li><a href="./views/signup.html">Sign Up</a></li>';
-}
+    document.getElementById('switchNavTab').innerHTML= '<li><a href="/login">Login</a></li><li><a href="/signup">Sign Up</a></li>';
+  }
 else {
     var txt = document.cookie.split(';');
     var name="";
@@ -17,7 +17,7 @@ else {
       document.getElementById('switchNavTab').innerHTML= '<li><a href="/add-post">Create new post</a></li><li><a href="/user/'+login+'">My info</a></li><li><a href="/logout">Log out</a></li>';
     } else {
       document.getElementById('displayUsername').innerHTML = "You are not login!";
-      document.getElementById('switchNavTab').innerHTML= '<li><a href="./views/login.html">Login</a></li><li><a href="./views/signup.html">Sign Up</a></li>';
+      document.getElementById('switchNavTab').innerHTML= '<li><a href="/login">Login</a></li><li><a href="/signup">Sign Up</a></li>';
     }
 }
 
@@ -83,7 +83,8 @@ xmlHttp.onreadystatechange = function() {
         none1.setAttribute('height','20');
         document.getElementById("displayThread").appendChild(none1);
 
-        var all = document.createElement('table');
+        var tab = document.createElement('table');
+
         var navbar = document.createElement('tr');
         var inner = document.createElement('th');
         inner.setAttribute('width',"10%");
@@ -105,11 +106,8 @@ xmlHttp.onreadystatechange = function() {
         inner.innerHTML = 'Comments';
         inner.setAttribute('style',"background-color : #126DA5; color : white");
         navbar.appendChild(inner);
-        all.appendChild(navbar);
-        all.setAttribute('width',"100%");
-        document.getElementById("displayThread").appendChild(all);
+        tab.appendChild(navbar);
 
-        var tab = document.createElement('table');
         for (var i=0;i<Object.keys(myDB.Threads).length;i++) {
             if (myDB.Threads[i].author != login) continue;
             thread = document.createElement('tr');
@@ -150,6 +148,7 @@ xmlHttp.onreadystatechange = function() {
             tab.appendChild(thread);
         }
       tab.setAttribute('width',"100%");
+      tab.setAttribute('style','border-collapse: collapse;border: 1px solid black;');
       document.getElementById("displayThread").appendChild(tab);
     }
 };

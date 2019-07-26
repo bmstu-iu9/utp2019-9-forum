@@ -1,8 +1,8 @@
 
 if (document.cookie == '/' || document.cookie == "") {
     document.getElementById('displayUsername').innerHTML = "You are not login!";
-    document.getElementById('switchNavTab').innerHTML= '<li><a href="./views/login.html">Login</a></li><li><a href="./views/signup.html">Sign Up</a></li>';
-}
+    document.getElementById('switchNavTab').innerHTML= '<li><a href="/login">Login</a></li><li><a href="/signup">Sign Up</a></li>';
+  }
 else {
     var txt = document.cookie.split(';');
     var name="";
@@ -17,7 +17,7 @@ else {
       document.getElementById('switchNavTab').innerHTML= '<li><a href="/add-post">Create new post</a></li><li><a href="/user/'+login+'">My info</a></li><li><a href="/logout">Log out</a></li>';
     } else {
       document.getElementById('displayUsername').innerHTML = "You are not login!";
-      document.getElementById('switchNavTab').innerHTML= '<li><a href="./views/login.html">Login</a></li><li><a href="./views/signup.html">Sign Up</a></li>';
+      document.getElementById('switchNavTab').innerHTML= '<li><a href="/login">Login</a></li><li><a href="/signup">Sign Up</a></li>';
     }
 }
 
@@ -101,7 +101,7 @@ xmlHttp.onreadystatechange = function() {
                 thread.setAttribute('height','30');
                 tab.appendChild(thread);
             }
-
+            tab.setAttribute('style','border-collapse: collapse;border: 1px solid black;');
             document.getElementById("displayThread").appendChild(tab);
 
         }

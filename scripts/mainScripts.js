@@ -1,8 +1,8 @@
 
 if (document.cookie == '/' || document.cookie == "") {
     document.getElementById('displayUsername').innerHTML = "You are not login!";
-    document.getElementById('switchNavTab').innerHTML= '<li><a href="./views/login.html">Login</a></li><li><a href="./views/signup.html">Sign Up</a></li>';
-}
+    document.getElementById('switchNavTab').innerHTML= '<li><a href="/login">Login</a></li><li><a href="/signup">Sign Up</a></li>';
+  }
 else {
     var txt = document.cookie.split(';');
     var name="";
@@ -17,7 +17,7 @@ else {
       document.getElementById('switchNavTab').innerHTML= '<li><a href="/add-post">Create new post</a></li><li><a href="/user/'+login+'">My info</a></li><li><a href="/logout">Log out</a></li>';
     } else {
       document.getElementById('displayUsername').innerHTML = "You are not login!";
-      document.getElementById('switchNavTab').innerHTML= '<li><a href="./views/login.html">Login</a></li><li><a href="./views/signup.html">Sign Up</a></li>';
+      document.getElementById('switchNavTab').innerHTML= '<li><a href="/login">Login</a></li><li><a href="/signup">Sign Up</a></li>';
     }
 }
 
@@ -27,6 +27,17 @@ xmlHttp.onreadystatechange = function() {
     if (this.readyState==4 && this.status==200) {
         var myDB = JSON.parse(this.responseText);
         var thread;
+
+        var title = document.createElement('tr');
+        title.setAttribute("style","background-color: #2D90EC; color: white");
+        title.setAttribute("width","100%");
+        title.innerHTML = '<th width = "10%">Tag</th>'
+                         +'<th width = "60%">Thread title</th>'
+                         +'<th class="text-center" width = "10%">Upvote </th>'
+                         +'<th class="text-center" width = "10%">Comments </th>'
+                         +'<th witdh = "10%">Author </th>';
+        document.getElementById("displayThread").appendChild(title);
+
         for (var i=0;i<Object.keys(myDB.Threads).length;i++) {
             thread = document.createElement('tr');
             var tags = document.createElement('th');
@@ -36,6 +47,7 @@ xmlHttp.onreadystatechange = function() {
             inner.setAttribute('href','/filter/tag='+tag);
             inner.innerHTML = myDB.Threads[i].tags;
             tags.appendChild(inner);
+            tags.setAttribute('style',"background-color : white");
             thread.appendChild(tags);
 
             var title = document.createElement('th');
@@ -52,6 +64,7 @@ xmlHttp.onreadystatechange = function() {
             vote.setAttribute('class',"text-center");
             vote.setAttribute('width',"10%");
             vote.innerHTML = myDB.Threads[i].upVote;
+            vote.setAttribute('style',"background-color : white");
             thread.appendChild(vote);
 
             var cmt = document.createElement('th');
@@ -67,7 +80,9 @@ xmlHttp.onreadystatechange = function() {
             inner.setAttribute('href','/user/'+myDB.Threads[i].author);
             inner.innerHTML = myDB.Threads[i].author;
             author.appendChild(inner);
+            author.setAttribute('style',"background-color : white");
             thread.appendChild(author);
+
 
             thread.setAttribute('height','30');
             document.getElementById("displayThread").appendChild(thread);
