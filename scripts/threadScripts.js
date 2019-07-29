@@ -128,10 +128,16 @@ xmlHttp.onreadystatechange = function() {
               if (myDB.Threads[j].author == myDB.Threads[index].comments[i].author) numberOfThread++;
             var repliesTable = document.createElement('table');
             repliesTable.setAttribute('width','100%');
-            repliesTable.innerHTML = '<tr"><td align = "right" style="vertical-align:top"><button class="btn"><i class="fa fa-arrow-up"></i></button></td>'
-                                +'<th width = "95%">'+myDB.Threads[index].comments[i].author + " - " +numberOfThread + " posts" + '</th></tr>'
-                                +'<tr height = "80"><td align = "right" style="vertical-align:top"><button class="btn"><i class="fa fa-arrow-down"></i></button></td> '
-                                +'<th width = "95%" style = "background-color : #E5EEFD; vertical-align:top">'+myDB.Threads[index].comments[i].content + '</th></tr>';
+            repliesTable.innerHTML = '<tr>'
+                                +'<th style="border-right: 1px solid gray" width = "3%"></th>'
+                                +'<th width = "2%"></th>'
+                                +'<th width = "95%">'+myDB.Threads[index].comments[i].author + " - " +numberOfThread + " posts" + '</th>'
+                                +'</tr>'
+                                +'<tr height = "80">'
+                                +'<th style="border-right: 1px solid gray" width = "3%"></th>'
+                                +'<th width = "2%"></th>'
+                                +'<th width = "95%" style = "background-color : #E5EEFD; vertical-align:top">'+myDB.Threads[index].comments[i].content + '</th>'
+                                +'</tr>';
             document.getElementById("displayThread").appendChild(repliesTable);
         }
 
