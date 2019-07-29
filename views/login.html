@@ -46,7 +46,7 @@
 
             </div>
         </nav>
-        <form method = "post" style = "padding : 5px; margin-left : 5%">
+        <form method = "post" style = "padding : 5px; margin-left : 5%" onsubmit="return exceptionHandle(this);">
             <h2>Login</h2>
 
             <label for = "inputUserName">Username</label>
@@ -65,6 +65,9 @@
             <a href = "/signup" class = "btn btn-primary" style = "margin-top: 1%">Don't have account?</a>
 
         </form>
+
+    <script src = "../scripts/loginScripts.js"></script>
+
     </body>
 
 </html>
