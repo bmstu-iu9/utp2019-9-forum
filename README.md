@@ -1,5 +1,4 @@
-﻿# utp2019-9-forum
-# ROZ forum
+﻿# ROZ forum
 Форум на JavaScript (Node.js)
 
 # Состав группы
