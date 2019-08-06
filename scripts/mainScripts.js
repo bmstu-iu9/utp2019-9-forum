@@ -93,7 +93,7 @@ xmlHttp.onreadystatechange = function() {
         title.setAttribute("class","text-center");
         title.setAttribute("height","50");
         title.setAttribute("style","background-color: #2D90EC; color: white");
-        title.innerHTML = "<td><strong>TRENDING TAGS</strong></td>";
+        title.innerHTML = "<td><strong>TOP 10 TRENDING TAGS</strong></td>";
         document.getElementById("displayTrending").appendChild(title);
 
         var allTags = [];
@@ -118,9 +118,13 @@ xmlHttp.onreadystatechange = function() {
                 allTags[i] = allTags[j];
                 allTags[j] = lol;
             }
-        for (var i=0;i<allTags.length;i++) {
+        for (var i=0;i<Math.min(allTags.length,10);i++) {
             var content = document.createElement('tr');
-            content.innerHTML = "<td>" + allTags[i] + " " + quantity[i] + "</td>";
+            var tag = allTags[i].substr(1);
+            var link = "/filter/tag="+tag;
+            var main = document.createElement('th');
+            main.innerHTML = "<a href = " + link +">" + allTags[i] + "</a>";
+            content.appendChild(main);
             document.getElementById("displayTrending").appendChild(content);
         }
     }
