@@ -92,3 +92,11 @@ xmlHttp.onreadystatechange = function() {
 
 xmlHttp.open("GET", "/threads");
 xmlHttp.send();
+
+
+var title = document.createElement('tr');
+title.setAttribute("class","text-center");
+title.setAttribute("height","50");
+title.setAttribute("style","background-color: #2D90EC; color: white");
+title.innerHTML = "<td><strong>TRENDING TAGS</strong></td>";
+document.getElementById("displayTrending").appendChild(title);
