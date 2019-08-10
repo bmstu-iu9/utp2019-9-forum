@@ -124,6 +124,7 @@ xmlHttp.onreadystatechange = function() {
             var link = "/filter/tag="+tag;
             var main = document.createElement('th');
             main.innerHTML ="&nbsp&nbsp&nbsp" + i + "&nbsp&nbsp&nbsp<a href = " + link +">" + allTags[i] + "</a>";
+            main.setAttribute('style',"background-color : white");
             content.appendChild(main);
             document.getElementById("displayTrending").appendChild(content);
         }

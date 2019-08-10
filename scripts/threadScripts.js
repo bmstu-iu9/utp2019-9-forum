@@ -45,7 +45,7 @@ xmlHttp.onreadystatechange = function() {
 
         var author = document.createElement('tr');
         var inner = document.createElement('th');
-        inner.innerHTML = myDB.Threads[index].author + " - " +numberOfThread + " posts";
+        inner.innerHTML = "<a href = '/user/" +myDB.Threads[index].author +"'>" + myDB.Threads[index].author + "</a>";
         inner.setAttribute('style',"background-color : #E5EEFD; color : #0B5FEA");
         inner.setAttribute('height','60');
         author.appendChild(inner);
@@ -131,7 +131,8 @@ xmlHttp.onreadystatechange = function() {
             repliesTable.innerHTML = '<tr>'
                                 +'<th style="border-right: 1px solid gray" width = "3%"></th>'
                                 +'<th width = "2%"></th>'
-                                +'<th width = "95%">'+myDB.Threads[index].comments[i].author + " - " +numberOfThread + " posts" + '</th>'
+                                +'<th width = "95%">'+"<a href = '/user/" +myDB.Threads[index].author +"'>" + myDB.Threads[index].author + "</a>"
+                                +'</th>'
                                 +'</tr>'
                                 +'<tr height = "80">'
                                 +'<th style="border-right: 1px solid gray" width = "3%"></th>'

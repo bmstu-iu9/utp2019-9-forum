@@ -44,6 +44,7 @@ xmlHttp.onreadystatechange = function() {
             var inner = document.createElement('th');
             inner.setAttribute('width','100%');
             inner.innerHTML = '<font size="3"><i>'+numberOfThread + " results found with " + filterTag + " tag"+'</i></font>';
+            inner.setAttribute('style',"background-color : white");
             findRes.appendChild(inner);
             document.getElementById("displayThread").appendChild(findRes);
 
@@ -65,6 +66,7 @@ xmlHttp.onreadystatechange = function() {
                 var tags = document.createElement('th');
                 tags.setAttribute('width',"10%");
                 tags.innerHTML = myDB.Threads[i].tags;
+                tags.setAttribute('style',"background-color : white");
                 thread.appendChild(tags);
 
                 var title = document.createElement('th');
@@ -80,6 +82,7 @@ xmlHttp.onreadystatechange = function() {
                 var vote = document.createElement('th');
                 vote.setAttribute('class',"text-center");
                 vote.setAttribute('width',"10%");
+                vote.setAttribute('style',"background-color : white");
                 vote.innerHTML = myDB.Threads[i].upVote;
                 thread.appendChild(vote);
 
@@ -95,6 +98,7 @@ xmlHttp.onreadystatechange = function() {
                 var inner = document.createElement('a');
                 inner.setAttribute('href','/user/'+myDB.Threads[i].author);
                 inner.innerHTML = myDB.Threads[i].author;
+                author.setAttribute('style',"background-color : white");
                 author.appendChild(inner);
                 thread.appendChild(author);
 
