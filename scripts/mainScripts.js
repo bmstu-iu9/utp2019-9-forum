@@ -123,7 +123,7 @@ xmlHttp.onreadystatechange = function() {
             var tag = allTags[i].substr(1);
             var link = "/filter/tag="+tag;
             var main = document.createElement('th');
-            main.innerHTML = "<a href = " + link +">" + allTags[i] + "</a>";
+            main.innerHTML ="&nbsp&nbsp&nbsp" + i + "&nbsp&nbsp&nbsp<a href = " + link +">" + allTags[i] + "</a>";
             content.appendChild(main);
             document.getElementById("displayTrending").appendChild(content);
         }
