@@ -10,7 +10,9 @@ exports.Login = (req,res) => {
           db.sessions.createSession(result.username).then(cookie => {
               console.log('done add new session to database');
               console.log(cookie);
-              sendMethod.sendResponse('./views/main.html',res,'text/html',cookie,'/');
+              setTimeout(function () {
+                sendMethod.sendResponse('./views/main.html', res, 'text/html', cookie, '/');
+              }, 500);
           })
           .catch(err => {
               console.log(err);

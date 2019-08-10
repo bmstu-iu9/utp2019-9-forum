@@ -1,54 +1,19 @@
 {
     "Sessions": [
         {
-            "id": "_mckfyeej8x",
-            "username": "dat1",
-            "date": 1562954180527
-        },
-        {
-            "id": "_tux86fmmv8o",
-            "username": "dat1",
-            "date": 1563286340771
-        },
-        {
-            "id": "_xlh426sr0ft",
-            "username": "dat1",
-            "date": 1563349213616
-        },
-        {
-            "id": "_9woru9mo6e",
+            "id": "_9ijpfa50dzt",
             "username": "dat2",
-            "date": 1563353162544
+            "date": 1565443688920
         },
         {
-            "id": "_jxfqpahrjsb",
-            "username": "dat2",
-            "date": 1563543514923
-        },
-        {
-            "id": "_bqi0bh691z8",
-            "username": "invoker",
-            "date": 1563954489720
-        },
-        {
-            "id": "_583apwyrd0n",
+            "id": "_y0limhbeqhe",
             "username": "dat1",
-            "date": 1564126415533
+            "date": 1565443697704
         },
         {
-            "id": "_fzzwr7g5zma",
+            "id": "_02xvg0brzqkl",
             "username": "dat1",
-            "date": 1565011631190
-        },
-        {
-            "id": "_05tfsf8nifs",
-            "username": "dat2",
-            "date": 1565111267451
-        },
-        {
-            "id": "_43wrjpz6j0d",
-            "username": "dat1",
-            "date": 1565443090437
+            "date": 1565443756952
         }
     ]
 }
