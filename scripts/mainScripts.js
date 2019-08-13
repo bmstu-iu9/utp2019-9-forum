@@ -87,6 +87,47 @@ xmlHttp.onreadystatechange = function() {
             thread.setAttribute('height','30');
             document.getElementById("displayThread").appendChild(thread);
         }
+
+        //==============================================================//
+        var title = document.createElement('tr');
+        title.setAttribute("class","text-center");
+        title.setAttribute("height","50");
+        title.setAttribute("style","background-color: #2D90EC; color: white");
+        title.innerHTML = "<td><strong>TOP 10 TRENDING TAGS</strong></td>";
+        document.getElementById("displayTrending").appendChild(title);
+
+        var allTags = [];
+        var quantity = [];
+
+        for (var i=0;i<Object.keys(myDB.Threads).length;i++) {
+            var tag = myDB.Threads[i].tags;
+            if (allTags.indexOf(tag)!=-1) quantity[allTags.indexOf(tag)]++;
+            else {
+                allTags.push(tag);
+                quantity.push(1);
+            }
+        }
+
+        for (var i=0;i<allTags.length;i++)
+          for (var j=i+1;j<allTags.length;j++)
+            if (quantity[i] < quantity[j]) {
+                var tmp = quantity[i];
+                quantity[i] = quantity[j];
+                quantity[j] = tmp;
+                var lol = allTags[i];
+                allTags[i] = allTags[j];
+                allTags[j] = lol;
+            }
+        for (var i=0;i<Math.min(allTags.length,10);i++) {
+            var content = document.createElement('tr');
+            var tag = allTags[i].substr(1);
+            var link = "/filter/tag="+tag;
+            var main = document.createElement('th');
+            main.innerHTML ="&nbsp&nbsp&nbsp" + i + "&nbsp&nbsp&nbsp<a href = " + link +">" + allTags[i] + "</a>";
+            main.setAttribute('style',"background-color : white");
+            content.appendChild(main);
+            document.getElementById("displayTrending").appendChild(content);
+        }
     }
 };
 

@@ -1,5 +1,4 @@
-﻿# utp2019-9-forum
-# ROZ forum
+﻿# ROZ forum
 Форум на JavaScript (Node.js)
 
 # Состав группы
@@ -11,5 +10,4 @@
 2: скачать проект
 3: в папке проекта открыть консоль node index.js
 4: в браузере открыть localhost:6969
-5: Enjoys :)
 ```

@@ -117,6 +117,7 @@ xmlHttp.onreadystatechange = function() {
             var inner = document.createElement('a');
             var tag = myDB.Threads[i].tags.substr(1);
             inner.setAttribute('href','/filter/tag='+tag);
+            tags.setAttribute('style',"background-color : white");
             inner.innerHTML = myDB.Threads[i].tags;
             tags.appendChild(inner);
             thread.appendChild(tags);
@@ -134,6 +135,7 @@ xmlHttp.onreadystatechange = function() {
             var vote = document.createElement('th');
             vote.setAttribute('class',"text-center");
             vote.setAttribute('width',"10%");
+            vote.setAttribute('style',"background-color : white");
             vote.innerHTML = myDB.Threads[i].upVote;
             thread.appendChild(vote);
 
