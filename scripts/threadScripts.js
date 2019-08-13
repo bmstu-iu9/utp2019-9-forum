@@ -60,7 +60,7 @@ xmlHttp.onreadystatechange = function() {
         var entry = document.createElement('tr');
         var inner = document.createElement('textarea');
         inner.innerHTML =myDB.Threads[index].entry;
-        inner.setAttribute('cols',"145");
+        inner.setAttribute('cols',"210");
         inner.setAttribute('rows',"10");
         inner.setAttribute('readonly','readonly');
         entry.appendChild(inner);
@@ -103,7 +103,7 @@ xmlHttp.onreadystatechange = function() {
             var commentArea = document.createElement('form');
             commentArea.setAttribute('method','post');
             var area = document.createElement('textarea');
-            area.setAttribute('cols',"145");
+            area.setAttribute('cols',"210");
             area.setAttribute('rows',"5");
             area.setAttribute('name','replyContent');
             area.setAttribute('placeholder','What are your thoughts ?')
