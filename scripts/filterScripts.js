@@ -44,7 +44,7 @@ xmlHttp.onreadystatechange = function() {
             var inner = document.createElement('th');
             inner.setAttribute('width','100%');
             inner.innerHTML = '<font size="3"><i>'+numberOfThread + " results found with " + filterTag + " tag"+'</i></font>';
-            inner.setAttribute('style',"background-color : white");
+            inner.setAttribute('style',"background-color : #E5E5E5");
             findRes.appendChild(inner);
             document.getElementById("displayThread").appendChild(findRes);
 
