@@ -1,5 +1,5 @@
 ﻿# ROZ forum
-Форум на JavaScript (Node.js)
+Форум на JavaScript. Tолько с базовым NodeJS и JSON-server, без какой-либо framework или library.
 
 # Состав группы
 - Нгуен Тхань Дат (https://github.com/datnguyen79198) 
