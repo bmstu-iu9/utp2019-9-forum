@@ -102,7 +102,6 @@ xmlHttp.onreadystatechange = function() {
             var commentArea = document.createElement('form');
             commentArea.setAttribute('method','post');
             var area = document.createElement('textarea');
-            area.setAttribute('cols',"210");
             area.setAttribute('rows',"5");
             area.setAttribute('name','replyContent');
             area.setAttribute('placeholder','What are your thoughts ?')
