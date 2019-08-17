@@ -60,7 +60,6 @@ xmlHttp.onreadystatechange = function() {
         var entry = document.createElement('tr');
         var inner = document.createElement('textarea');
         inner.innerHTML =myDB.Threads[index].entry;
-        inner.setAttribute('cols',"210");
         inner.setAttribute('rows',"10");
         inner.setAttribute('readonly','readonly');
         entry.appendChild(inner);
