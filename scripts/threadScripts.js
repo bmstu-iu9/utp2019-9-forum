@@ -120,16 +120,21 @@ xmlHttp.onreadystatechange = function() {
             block.appendChild(commentArea);
             document.getElementById("displayThread").appendChild(block);
         }
+        console.log(login);
         for (var i=0;i<Object.keys(myDB.Threads[index].comments).length;i++) {
             numberOfThread=0;
             for (var j=0;j<Object.keys(myDB.Threads).length;j++)
               if (myDB.Threads[j].author == myDB.Threads[index].comments[i].author) numberOfThread++;
             var repliesTable = document.createElement('table');
             repliesTable.setAttribute('width','100%');
+            var link = (myDB.Threads[index].comments[i].author === login)?"&nbsp&nbsp&nbsp<a>edit</a>":"";
             repliesTable.innerHTML = '<tr>'
                                 +'<th style="border-right: 1px solid gray" width = "3%"></th>'
                                 +'<th width = "2%"></th>'
-                                +'<th width = "95%">'+"<a href = '/user/" +myDB.Threads[index].author +"'>" + myDB.Threads[index].author + "</a>"
+                                +'<th width = "95%">'
+                                +"<a href = '/user/" + myDB.Threads[index].comments[i].author +"'>" +  myDB.Threads[index].comments[i].author
+                                + link
+                                + "</a>"
                                 +'</th>'
                                 +'</tr>'
                                 +'<tr height = "80">'
