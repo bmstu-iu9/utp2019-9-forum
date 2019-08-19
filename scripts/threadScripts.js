@@ -127,7 +127,7 @@ xmlHttp.onreadystatechange = function() {
               if (myDB.Threads[j].author == myDB.Threads[index].comments[i].author) numberOfThread++;
             var repliesTable = document.createElement('table');
             repliesTable.setAttribute('width','100%');
-            var link = (myDB.Threads[index].comments[i].author === login)?"&nbsp&nbsp&nbsp<a onclick='Editting()'>edit</a>":"";
+            var link = (myDB.Threads[index].comments[i].author === login)?"&nbsp&nbsp&nbsp<a onclick='Editting("+i+")'>edit</a>":"";
             repliesTable.innerHTML = '<tr>'
                                 +'<th style="border-right: 1px solid gray" width = "3%"></th>'
                                 +'<th width = "2%"></th>'
@@ -137,7 +137,7 @@ xmlHttp.onreadystatechange = function() {
                                 + "</a>"
                                 +'</th>'
                                 +'</tr>'
-                                +'<tr height = "80">'
+                                +'<tr id = "comment'+i+'" height = "80">'
                                 +'<th style="border-right: 1px solid gray" width = "3%"></th>'
                                 +'<th width = "2%"></th>'
                                 +'<th width = "95%" style = "background-color : #E5EEFD; vertical-align:top">'+myDB.Threads[index].comments[i].content + '</th>'
@@ -150,9 +150,9 @@ xmlHttp.onreadystatechange = function() {
     }
 };
 
-var Editting = () => {
-    alert("clicked");
+var Editting = (index) => {
+    var className = "comment"+index;
+    document.getElementById(className).style.display = "none";
 }
-
 xmlHttp.open("GET", "/threads");
 xmlHttp.send();
