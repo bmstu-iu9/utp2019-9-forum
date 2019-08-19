@@ -24,13 +24,13 @@ else {
 }
 
 var numberOfThread=0;
+var thread_id = window.location.pathname.split('/')[2];
 
 var xmlHttp = new XMLHttpRequest();
 
 xmlHttp.onreadystatechange = function() {
     if (this.readyState==4 && this.status==200) {
         var myDB = JSON.parse(this.responseText);
-        var thread_id = window.location.pathname.split('/')[2];
         console.log(thread_id);
         var index;
         for (var i=0;i<Object.keys(myDB.Threads).length;i++)
@@ -175,9 +175,10 @@ var Editting = (index,contentReply) => {
     col.setAttribute("width","95%");
     var commentArea = document.createElement('form');
     commentArea.setAttribute('method','post');
+    commentArea.setAttribute('action','/editComment/'+thread_id);
     var area = document.createElement('textarea');
     area.setAttribute('rows',"5");
-    area.setAttribute('name','editReply');
+    area.setAttribute('name','editContent');
     area.setAttribute('placeholder',contentReply);
     commentArea.appendChild(area);
     var ID = document.createElement('input');

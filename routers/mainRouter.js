@@ -94,6 +94,10 @@ class Router {
               var post = require('./thread');
               post.dislike(req,res);
           }
+          else if (tmp == 'editComment') {
+              var post = require('./thread');
+              post.editComment(req,res);
+          }
       }
       else {
         res.writeHead(404, {'Content-Type' : 'text/html'});
