@@ -129,7 +129,8 @@ xmlHttp.onreadystatechange = function() {
             repliesTable.setAttribute('width','100%');
             var ID = "reply"+i;
             repliesTable.setAttribute('id',ID);
-            var link = (myDB.Threads[index].comments[i].author === login)?"&nbsp&nbsp&nbsp<a id='edit"+i+"' onclick='Editting("+i+")'>edit</a>":"";
+            var content = '"' + myDB.Threads[index].comments[i].content + '"';
+            var link = (myDB.Threads[index].comments[i].author === login)?"&nbsp&nbsp&nbsp<a id='edit"+i+"' onclick='Editting("+i+ ',' + content +")'>edit</a>":"";
             repliesTable.innerHTML = '<tr>'
                                 +'<th style="border-right: 1px solid gray" width = "3%"></th>'
                                 +'<th width = "2%"></th>'
@@ -152,15 +153,48 @@ xmlHttp.onreadystatechange = function() {
     }
 };
 
-var Editting = (index) => {
+var Editting = (index,contentReply) => {
     var commentID = "comment"+index;
     var replyID = "reply"+index;
     var editID = "edit"+index;
     document.getElementById(editID).style.display = "none";
     document.getElementById(commentID).style.display = "none";
-    var lol = document.createElement('tr');
-    lol.innerHTML = "LOL";
-    document.getElementById(replyID).appendChild(lol);
+
+    var block = document.createElement('tr');
+
+    var line = document.createElement('th');
+    line.setAttribute("width","3%");
+    line.setAttribute("style","border-right: 1px solid gray");
+    block.appendChild(line);
+
+    var none = document.createElement('th');
+    none.setAttribute("width","2%");
+    block.appendChild(none);
+
+    var col = document.createElement('th');
+    col.setAttribute("width","95%");
+    var commentArea = document.createElement('form');
+    commentArea.setAttribute('method','post');
+    var area = document.createElement('textarea');
+    area.setAttribute('rows',"5");
+    area.setAttribute('name','editReply');
+    area.setAttribute('placeholder',contentReply);
+    commentArea.appendChild(area);
+    var ID = document.createElement('input');
+    ID.setAttribute('type','hidden');
+    ID.setAttribute('name','indexReply');
+    ID.setAttribute('value',index);
+    commentArea.appendChild(ID);
+    var postButton = document.createElement('button');
+    postButton.setAttribute('type','submit');
+    postButton.setAttribute('class','btn btn-primary');
+    postButton.setAttribute('style','float: right');
+    postButton.innerHTML = "Edit";
+    commentArea.appendChild(postButton);
+
+    col.appendChild(commentArea);
+    block.appendChild(col);
+    document.getElementById(replyID).appendChild(block);
 }
 xmlHttp.open("GET", "/threads");
 xmlHttp.send();
