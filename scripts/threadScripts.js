@@ -127,7 +127,7 @@ xmlHttp.onreadystatechange = function() {
               if (myDB.Threads[j].author == myDB.Threads[index].comments[i].author) numberOfThread++;
             var repliesTable = document.createElement('table');
             repliesTable.setAttribute('width','100%');
-            var link = (myDB.Threads[index].comments[i].author === login)?"&nbsp&nbsp&nbsp<a>edit</a>":"";
+            var link = (myDB.Threads[index].comments[i].author === login)?"&nbsp&nbsp&nbsp<a onclick='Editting()'>edit</a>":"";
             repliesTable.innerHTML = '<tr>'
                                 +'<th style="border-right: 1px solid gray" width = "3%"></th>'
                                 +'<th width = "2%"></th>'
@@ -149,6 +149,10 @@ xmlHttp.onreadystatechange = function() {
         document.getElementById("displayThread").appendChild(document.createElement('br'));
     }
 };
+
+var Editting = () => {
+    alert("clicked");
+}
 
 xmlHttp.open("GET", "/threads");
 xmlHttp.send();
