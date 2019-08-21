@@ -24,13 +24,13 @@ else {
 }
 
 var numberOfThread=0;
+var thread_id = window.location.pathname.split('/')[2];
 
 var xmlHttp = new XMLHttpRequest();
 
 xmlHttp.onreadystatechange = function() {
     if (this.readyState==4 && this.status==200) {
         var myDB = JSON.parse(this.responseText);
-        var thread_id = window.location.pathname.split('/')[2];
         console.log(thread_id);
         var index;
         for (var i=0;i<Object.keys(myDB.Threads).length;i++)
@@ -60,7 +60,6 @@ xmlHttp.onreadystatechange = function() {
         var entry = document.createElement('tr');
         var inner = document.createElement('textarea');
         inner.innerHTML =myDB.Threads[index].entry;
-        inner.setAttribute('cols',"210");
         inner.setAttribute('rows',"10");
         inner.setAttribute('readonly','readonly');
         entry.appendChild(inner);
@@ -103,7 +102,6 @@ xmlHttp.onreadystatechange = function() {
             var commentArea = document.createElement('form');
             commentArea.setAttribute('method','post');
             var area = document.createElement('textarea');
-            area.setAttribute('cols',"210");
             area.setAttribute('rows',"5");
             area.setAttribute('name','replyContent');
             area.setAttribute('placeholder','What are your thoughts ?')
@@ -122,19 +120,27 @@ xmlHttp.onreadystatechange = function() {
             block.appendChild(commentArea);
             document.getElementById("displayThread").appendChild(block);
         }
+        console.log(login);
         for (var i=0;i<Object.keys(myDB.Threads[index].comments).length;i++) {
             numberOfThread=0;
             for (var j=0;j<Object.keys(myDB.Threads).length;j++)
               if (myDB.Threads[j].author == myDB.Threads[index].comments[i].author) numberOfThread++;
             var repliesTable = document.createElement('table');
             repliesTable.setAttribute('width','100%');
+            var ID = "reply"+i;
+            repliesTable.setAttribute('id',ID);
+            var content = '"' + myDB.Threads[index].comments[i].content + '"';
+            var link = (myDB.Threads[index].comments[i].author === login)?"&nbsp&nbsp&nbsp<a id='edit"+i+"' onclick='Editting("+i+ ',' + content +")'>edit</a>":"";
             repliesTable.innerHTML = '<tr>'
                                 +'<th style="border-right: 1px solid gray" width = "3%"></th>'
                                 +'<th width = "2%"></th>'
-                                +'<th width = "95%">'+"<a href = '/user/" +myDB.Threads[index].author +"'>" + myDB.Threads[index].author + "</a>"
+                                +'<th width = "95%">'
+                                +"<a href = '/user/" + myDB.Threads[index].comments[i].author +"'>" +  myDB.Threads[index].comments[i].author
+                                + link
+                                + "</a>"
                                 +'</th>'
                                 +'</tr>'
-                                +'<tr height = "80">'
+                                +'<tr id = "comment'+i+'" height = "80">'
                                 +'<th style="border-right: 1px solid gray" width = "3%"></th>'
                                 +'<th width = "2%"></th>'
                                 +'<th width = "95%" style = "background-color : #E5EEFD; vertical-align:top">'+myDB.Threads[index].comments[i].content + '</th>'
@@ -147,5 +153,49 @@ xmlHttp.onreadystatechange = function() {
     }
 };
 
+var Editting = (index,contentReply) => {
+    var commentID = "comment"+index;
+    var replyID = "reply"+index;
+    var editID = "edit"+index;
+    document.getElementById(editID).style.display = "none";
+    document.getElementById(commentID).style.display = "none";
+
+    var block = document.createElement('tr');
+
+    var line = document.createElement('th');
+    line.setAttribute("width","3%");
+    line.setAttribute("style","border-right: 1px solid gray");
+    block.appendChild(line);
+
+    var none = document.createElement('th');
+    none.setAttribute("width","2%");
+    block.appendChild(none);
+
+    var col = document.createElement('th');
+    col.setAttribute("width","95%");
+    var commentArea = document.createElement('form');
+    commentArea.setAttribute('method','post');
+    commentArea.setAttribute('action','/editComment/'+thread_id);
+    var area = document.createElement('textarea');
+    area.setAttribute('rows',"5");
+    area.setAttribute('name','editContent');
+    area.setAttribute('placeholder',contentReply);
+    commentArea.appendChild(area);
+    var ID = document.createElement('input');
+    ID.setAttribute('type','hidden');
+    ID.setAttribute('name','indexReply');
+    ID.setAttribute('value',index);
+    commentArea.appendChild(ID);
+    var postButton = document.createElement('button');
+    postButton.setAttribute('type','submit');
+    postButton.setAttribute('class','btn btn-primary');
+    postButton.setAttribute('style','float: right');
+    postButton.innerHTML = "Edit";
+    commentArea.appendChild(postButton);
+
+    col.appendChild(commentArea);
+    block.appendChild(col);
+    document.getElementById(replyID).appendChild(block);
+}
 xmlHttp.open("GET", "/threads");
 xmlHttp.send();

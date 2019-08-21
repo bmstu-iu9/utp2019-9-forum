@@ -7,6 +7,17 @@
 
     <title> New Post </title>
 
+    <style>
+      textarea {
+        width:70%;
+        resize:none;
+      }
+
+      input {
+        width:70%;
+      }
+    </style>
+
     <!-- Latest compiled and minified CSS of Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/main.css">
@@ -48,13 +59,13 @@
         <div class = "row">
             <form method = "post">
                 <h2>Title:</h2>
-                <input type = "text" name = "title" size = "100" required><br><br>
+                <input type = "text" name = "title" required><br><br>
                 <h2>Thread entry:</h2>
-                <textarea name = "entry" cols = "101" rows = "10" required></textarea><br><br>
+                <textarea name = "entry" rows = "10" required></textarea><br><br>
 
                 <h2>Tags</h2>
 		            <p><em>Comma separated, please</em></p>
-		            <input type="text" name="tags" size="100" required pattern = "#.+" title="Must be start with #"><br>
+		            <input type="text" name="tags" required pattern = "#.+" title="Must be start with #"><br>
 		            <br><hr>
 		            <button class = "btn btn-primary" type = "submit">Post</button>
             </form>

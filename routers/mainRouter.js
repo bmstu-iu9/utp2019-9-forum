@@ -23,6 +23,11 @@ class Router {
                 var out = require('./logout');
                 out.Logout(req,res);
             }
+            else if (req.url == "/add-post") {
+                fileUrl = './views/newpost.html';
+                filePath = path.resolve(fileUrl);
+                sendMethod.sendResponse(filePath,res,'text/html',null,null);
+            }
             else if (req.url == '/threads') {
                 var post = require('./thread');
                 post.getThreads(req,res);
@@ -48,11 +53,6 @@ class Router {
             }
             else if (tmp == 'filter') {
                 fileUrl = './views/filter.html';
-                filePath = path.resolve(fileUrl);
-                sendMethod.sendResponse(filePath,res,'text/html',null,null);
-            }
-            else if (req.url == "/add-post") {
-                fileUrl = './views/newpost.html';
                 filePath = path.resolve(fileUrl);
                 sendMethod.sendResponse(filePath,res,'text/html',null,null);
             }
@@ -93,6 +93,10 @@ class Router {
           else if (tmp == 'dislike-post') {
               var post = require('./thread');
               post.dislike(req,res);
+          }
+          else if (tmp == 'editComment') {
+              var post = require('./thread');
+              post.editComment(req,res);
           }
       }
       else {
