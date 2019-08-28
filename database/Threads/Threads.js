@@ -146,3 +146,34 @@ exports.vote = (id,type) => {
         });
     });
 };
+
+exports.editReply = (id,editContent,indexReply) => {
+    return new Promise((resolve,reject) => {
+        fs.readFile(dbPath,'utf-8',(err,db) => {
+            if (err) {
+                console.log('Error when request to Users database');
+                reject(err);
+            }
+            else {
+                db = JSON.parse(db);
+                var threadID = get_post(db,id);
+                if (threadID == -1) {
+                    reject('No such this thread');
+                } else {
+                    if (editContent!="") db.Threads[threadID].comments[indexReply].content = editContent;
+                    db.Threads[threadID].comments[indexReply].date = new Date().getTime();
+
+                    db_to_json = JSON.stringify(db,'',4);
+                    fs.writeFile(dbPath, db_to_json, 'utf-8', (err) => {
+                        if (err) {
+                            console.log('Error while writing thread.json');
+                            reject(err);
+                        } else {
+                            resolve(true);
+                        }
+                    })
+                }
+            }
+        });
+    });
+};

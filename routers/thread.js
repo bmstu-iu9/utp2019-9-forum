@@ -46,6 +46,8 @@ exports.getThreads = (req,res) => {
 exports.addComment = (req,res) => {
     var post_id = req.url.split('/')[2];
     utils.checkBody(req,res).then(result => {
+        if (result.replyContent[result.replyContent.length-1]==="\n") result.replyContent = result.replyContent.substr(0,result.replyContent.length-1);
+        if (result.replyContent[result.replyContent.length-1]==="\r") result.replyContent = result.replyContent.substr(0,result.replyContent.length-1);
         if (result.replyContent==="") {
             var fileUrl = req.url;
             res.writeHead(301, {"Location" : fileUrl});
@@ -103,7 +105,9 @@ exports.dislike = (req,res) => {
 
 exports.filter = (req,res) => {
     utils.checkBody(req,res).then(result => {
-        var tag = result.tags.substr(1);
+        var tag;
+        if (result.tags[0]==="#") tag = result.tags.substr(1);
+        else tag = result.tags;
         var fileUrl = "/filter/tag="+tag;
         res.writeHead(301, {"Location" : fileUrl});
         res.end();
@@ -112,5 +116,29 @@ exports.filter = (req,res) => {
         console.log(err);
         res.statusCode = 400;
         res.end('Something go wrong');
+    });
+}
+
+exports.editComment = (req,res) => {
+    var post_id = req.url.split('/')[2];
+    utils.checkBody(req,res).then(result => {
+          if (result.editContent[result.editContent.length-1]==="\n") result.editContent = result.editContent.substr(0,result.editContent.length-1);
+          if (result.editContent[result.editContent.length-1]==="\r") result.editContent = result.editContent.substr(0,result.editContent.length-1);
+          db.threads.editReply(post_id,result.editContent,result.indexReply).then(result => {
+            console.log("done add comment");
+            var fileUrl = '/thread/'+post_id;
+            res.writeHead(301, {"Location" : fileUrl});
+            res.end();
+          })
+          .catch(err => {
+            console.log(err);
+            res.statusCode = 400;
+            res.end('Something go wrong');
+          });
+    },
+    err => {
+      console.log(err);
+      res.statusCode = 400;
+      res.end('Something go wrong');
     });
 }
